@@ -1,8 +1,8 @@
-.verticalScroll {
-  overflow-x: auto;
+#verticalScroll {
+  overflow: hidden;
   display: block;
   white-space: nowrap;
-  overflow-y: hidden;
+  height: 500px;
 }
 
 .work {
@@ -15,6 +15,7 @@
   box-shadow: 0 4px 8px rgba(0,0,0,.15);
   box-sizing: border-box;
   margin: 20px;
+  transition: 0.2s all ease-in-out;
 
   & > img {
     position: absolute;
@@ -22,5 +23,11 @@
     left: 0;
     z-index: -1;
     filter: blur(5px);
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 12px rgba(0,0,0,.15);
+    cursor: pointer;
   }
 }

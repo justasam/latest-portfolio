@@ -47,6 +47,21 @@ const mockData: WorkInfo[] = [
 
 const Home = props => {
   const [state, setState] = useState<HomeState>({work: [], loading: true});
+
+  const [position, setPosition] = useState(window.pageXOffset);
+
+  // vertical scroll
+  useEffect(() => {
+    let sDiv = document.getElementById('verticalScroll');
+    let verticalScroll = (e) => {
+      sDiv.scrollBy(- e.wheelDelta / 2, 0);
+    }
+    window.addEventListener('mousewheel', verticalScroll);
+    return () => {
+      window.removeEventListener('mousewheel', verticalScroll);
+    }
+  }, []);
+
   useEffect(() => {
     setTimeout(() => {
       setState({work: mockData, loading: false});
@@ -56,7 +71,7 @@ const Home = props => {
   console.log(loading, work);
 
   return (
-    <div className="verticalScroll">
+    <div id="verticalScroll">
       { loading ? <p>Loading...</p> :
         work.map((job, key) => 
           <div className="work" key={key}>
